@@ -1,8 +1,6 @@
 # Línea 1 — Yogures y leches fermentadas (código `Y`)
 ## Caracterización completa — 12 capas
 
-**Proyecto:** Automatización de Procesos de Manufactura 2026-2S — Entrega intermedia
-**Empresa de referencia:** Alpina (Colombia)
 **Última actualización:** ver historial de commits del repositorio
 
 **Leyenda de origen de los datos**
@@ -23,11 +21,10 @@
 
 | ID | Producto | Diferenciador clave | Origen |
 |---|---|---|---|
-| Y-PRD-001 | Yogur semidescremado sabor fresa con trozos de fruta, vaso 150 g (tipo Alpina Original) | Yogur batido: fermentación termófila en tanque, rompimiento del coágulo y mezcla con preparación de fruta; estabilizantes, azúcar y probióticos | `PUBLIC` (producto, 150 g, ingredientes) |
-| Y-PRD-002 | Yogur griego natural, vaso 150 g (tipo Alpina Griego) | Leche fermentada concentrada: etapa exclusiva de concentración (ultrafiltración) tras la fermentación; ≈ 2,7 kg de base por kg de producto; genera suero ácido como subproducto; sin azúcar ni estabilizantes | `PUBLIC` (producto, 150 g) / `ASSUMED` (sabor natural) |
-| Y-PRD-003 | Kumis dulce entero, botella 200 g (tipo Kumis Alpina) | Leche fermentada mesófila (*Lactococcus lactis*), fermentación más larga y a menor temperatura; producto semilíquido, envasado en botella en lugar de vaso | `PUBLIC` (producto, 200 g) / `ASSUMED` (envase botella) |
+| Y-PRD-001 | Yogur semidescremado sabor fresa con trozos de fruta, vaso 150 g  | Yogur batido: fermentación termófila en tanque, rompimiento del coágulo y mezcla con preparación de fruta; estabilizantes, azúcar y probióticos | `PUBLIC` (producto, 150 g, ingredientes) |
+| Y-PRD-002 | Yogur griego natural, vaso 150 g  | Leche fermentada concentrada: etapa exclusiva de concentración (ultrafiltración) tras la fermentación; ≈ 2,7 kg de base por kg de producto; genera suero ácido como subproducto; sin azúcar ni estabilizantes | `PUBLIC` (producto, 150 g) / `ASSUMED` (sabor natural) |
+| Y-PRD-003 | Kumis dulce entero, botella 200 g  | Leche fermentada mesófila (*Lactococcus lactis*), fermentación más larga y a menor temperatura; producto semilíquido, envasado en botella en lugar de vaso | `PUBLIC` (producto, 200 g) / `ASSUMED` (envase botella) |
 
-**Nombre de la línea:** el kumis no es yogur según la norma colombiana (se coagula con cultivos distintos), pero ambos son *leches fermentadas* (Res. 2310 de 1986, art. 10) y se elaboran en la misma línea. Por eso la línea se denomina "Yogures y leches fermentadas".
 
 **Mezcla de producción (en masa):** Y-PRD-001 50 % · Y-PRD-002 20 % · Y-PRD-003 30 % (`ASSUMED`)
 
