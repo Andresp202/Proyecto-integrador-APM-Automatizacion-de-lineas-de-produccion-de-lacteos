@@ -1426,3 +1426,180 @@ Los tiempos medidos, referenciados, asumidos y calculados deberán mantenerse di
 Se ha definido la estructura de registro temporal para las operaciones de las tres referencias, junto con los tiempos auxiliares que afectan la disponibilidad de los equipos y la duración de los lotes.
 
 Los valores numéricos quedan pendientes de recopilación o estimación justificada. Esta información se utilizará en la Capa 9 para caracterizar la capacidad por lote y por unidad de tiempo, considerando las restricciones de los equipos y las operaciones compartidas.
+
+
+
+# Capa 9 — Capacidades
+
+## 1. Objetivo
+
+Caracterizar la capacidad de producción de la línea de quesos para las referencias Campesino, Mozzarella y Sopó, considerando el tamaño de lote, los tiempos de operación, las capacidades nominales de los equipos y las restricciones que pueden afectar el flujo productivo.
+
+El análisis permitirá estimar la producción por lote, hora, turno y día, así como identificar los equipos y operaciones que podrían limitar la capacidad global de la línea.
+
+Debido a que no se dispone de datos operativos verificados de la planta de referencia, las capacidades numéricas se mantienen pendientes de recopilación o estimación técnicamente justificada.
+
+## 2. Indicadores de capacidad
+
+| ID | Indicador | Unidad estándar | Descripción | Origen/Estado |
+|---|---|---|---|---|
+| Q-CAP-001 | Tamaño de lote | kg/lote | Masa de producto procesada o producida por lote, indicando claramente el punto de medición | PENDING |
+| Q-CAP-002 | Capacidad nominal del equipo | kg/h o L/h | Capacidad declarada por el fabricante para las condiciones especificadas | PENDING |
+| Q-CAP-003 | Capacidad efectiva del equipo | kg/h | Producción por unidad de tiempo considerando las condiciones reales de operación | PENDING |
+| Q-CAP-004 | Capacidad de producción por lote | kg/lote | Cantidad de producto terminado obtenida en un lote | PENDING |
+| Q-CAP-005 | Capacidad de producción por hora | kg/h | Producción obtenida por hora efectiva de operación | PENDING |
+| Q-CAP-006 | Capacidad de producción por turno | kg/turno | Producción posible durante un turno definido | PENDING |
+| Q-CAP-007 | Capacidad de producción diaria | kg/día | Producción posible durante el periodo diario definido | PENDING |
+| Q-CAP-008 | Capacidad de almacenamiento | kg o L | Cantidad máxima que puede almacenarse en un equipo o área | PENDING |
+| Q-CAP-009 | Capacidad de maduración | kg | Cantidad de producto que puede mantenerse simultáneamente bajo las condiciones de maduración requeridas | PENDING |
+| Q-CAP-010 | Utilización del equipo | % | Relación entre el tiempo de utilización y el tiempo disponible definido | PENDING |
+| Q-CAP-011 | Rendimiento de producto | kg de producto/kg de materia prima | Relación entre la masa obtenida y la masa de materia prima procesada | PENDING |
+| Q-CAP-012 | Capacidad de la línea | kg/h | Producción sostenible de la línea considerando las restricciones de sus operaciones | PENDING |
+
+Los indicadores deberán asociarse con el producto, el periodo de análisis y las condiciones operativas correspondientes. Las capacidades de productos diferentes no deben sumarse sin verificar que comparten una base de medición comparable.
+
+## 3. Capacidad por lote
+
+La capacidad por lote representa la cantidad de producto que se procesa u obtiene durante una ejecución de producción.
+
+Se deben distinguir dos magnitudes:
+
+- **Masa de entrada por lote:** cantidad de materia prima que ingresa al proceso.
+- **Masa de producto terminado por lote:** cantidad obtenida al finalizar el proceso.
+
+Estas magnitudes no son equivalentes debido a la separación de suero, las pérdidas de proceso, la incorporación de ingredientes y otras transformaciones de masa.
+
+La capacidad del equipo que procesa el lote debe ser suficiente para la cantidad que recibe en la operación correspondiente. En equipos con procesamiento por lotes, el volumen o masa útil disponible puede limitar el tamaño de lote incluso si su capacidad nominal de procesamiento por hora es elevada.
+
+## 4. Capacidad de procesamiento por equipo
+
+Cuando se conoce la cantidad procesada y el tiempo efectivo correspondiente, la capacidad de procesamiento puede estimarse mediante la siguiente expresión:
+
+$$
+C_{\mathrm{equipo}}=\frac{M_{\mathrm{procesada}}}{T_{\mathrm{proceso}}}
+$$
+
+Donde:
+
+- \(C_{\mathrm{equipo}}\): capacidad de procesamiento, en kg/h.
+- \(M_{\mathrm{procesada}}\): masa procesada, en kg.
+- \(T_{\mathrm{proceso}}\): tiempo efectivo de procesamiento, en horas.
+
+Si la operación se mide en litros, la capacidad se expresará en L/h. No se deben convertir litros a kilogramos sin disponer de una densidad apropiada para el producto y las condiciones consideradas.
+
+Esta estimación describe la capacidad durante el tiempo de procesamiento. Para calcular la producción por turno o día, también deben considerarse la preparación, la limpieza, las esperas, los cambios de producto y la disponibilidad efectiva del equipo.
+
+## 5. Capacidad de producción por turno
+
+Para estimar la producción por turno, se debe determinar cuánto tiempo está realmente disponible para fabricar producto y cuánto tarda cada lote en ocupar los recursos limitantes.
+
+En el caso de lotes completos, una estimación inicial de la cantidad de lotes posibles es:
+
+$$
+N_{\mathrm{lotes}}
+=
+\left\lfloor
+\frac{T_{\mathrm{disponible}}}{T_{\mathrm{ciclo}}}
+\right\rfloor
+$$
+
+La expresión es aplicable cuando los ciclos considerados no se solapan en el recurso analizado y todos los lotes tienen una duración comparable.
+
+La producción por turno se estima como:
+
+$$
+P_{\mathrm{turno}}
+=
+N_{\mathrm{lotes}}\times M_{\mathrm{lote}}
+$$
+
+Donde:
+
+- \(N_{\mathrm{lotes}}\): número de lotes completos que pueden procesarse durante el turno.
+- \(T_{\mathrm{disponible}}\): tiempo disponible para la producción, en horas.
+- \(T_{\mathrm{ciclo}}\): tiempo de ciclo por lote, en horas.
+- \(M_{\mathrm{lote}}\): masa de producto terminado por lote, en kg.
+- \(P_{\mathrm{turno}}\): producción estimada por turno, en kg/turno.
+
+El cálculo definitivo deberá considerar las operaciones compartidas, los tiempos de limpieza y los posibles solapamientos entre equipos. En procesos continuos, la capacidad por turno deberá estimarse a partir del caudal efectivo y del tiempo disponible.
+
+## 6. Rendimiento del proceso
+
+El rendimiento relaciona la cantidad de producto terminado con la cantidad de materia prima utilizada. Para el análisis preliminar de la línea de quesos, puede calcularse mediante:
+
+$$
+R_{\mathrm{proceso}}
+=
+\frac{M_{\mathrm{producto\ terminado}}}
+{M_{\mathrm{leche\ procesada}}}
+$$
+
+Si se expresa como porcentaje:
+
+$$
+R_{\mathrm{proceso}}(\%)
+=
+\frac{M_{\mathrm{producto\ terminado}}}
+{M_{\mathrm{leche\ procesada}}}
+\times 100
+$$
+
+Este indicador permite comparar lotes y evaluar la consistencia de la producción. Sin embargo, el resultado depende de la referencia de queso, la composición de la leche, la formulación y las condiciones de procesamiento.
+
+El balance de materiales deberá considerar por separado las materias primas adicionales, el suero separado, los residuos y las demás salidas pertinentes. El rendimiento no debe interpretarse automáticamente como una medida de eficiencia sin analizar esas condiciones.
+
+## 7. Capacidad de almacenamiento y maduración
+
+La capacidad de almacenamiento debe analizarse de acuerdo con la naturaleza del material y las condiciones de conservación requeridas.
+
+| Sistema | Magnitud principal | Aspectos que limitan la capacidad |
+|---|---|---|
+| Almacenamiento de leche | L o kg | Volumen útil, disponibilidad de tanques y condiciones de conservación |
+| Equipos de elaboración | L/lote o kg/lote | Volumen útil, masa admisible y secuencia de operaciones |
+| Almacenamiento intermedio | kg o L | Espacio disponible y tiempo de permanencia |
+| Cámara de maduración | kg | Espacio útil, disposición del producto y condiciones ambientales |
+| Almacenamiento de producto terminado | kg | Espacio disponible, presentación, condiciones de conservación y rotación |
+
+La capacidad de maduración es especialmente importante para el queso Sopó. La cantidad de producto que puede fabricarse en un periodo no equivale necesariamente a la cantidad que puede mantenerse simultáneamente en maduración.
+
+Por ello, la capacidad de la cámara debe relacionarse con el inventario acumulado, el tiempo de permanencia y la programación de los lotes.
+
+## 8. Identificación de restricciones de capacidad
+
+La capacidad global de la línea no se obtiene sumando las capacidades nominales de todos los equipos. Depende de la secuencia productiva, la disponibilidad de cada recurso, los tiempos de ocupación y las restricciones de almacenamiento.
+
+Para el análisis se considerarán, entre otros, los siguientes factores:
+
+- Capacidad útil de tanques y equipos de elaboración.
+- Duración de la coagulación y otras etapas de permanencia.
+- Capacidad y disponibilidad de los sistemas de desuerado, prensado y estirado.
+- Tiempos de preparación, limpieza y cambio de producto.
+- Disponibilidad de personal y servicios industriales.
+- Capacidad de almacenamiento y maduración.
+- Programación de referencias y posibles operaciones compartidas.
+
+La operación o recurso que limite el flujo sostenible de producción constituirá una restricción de capacidad y deberá analizarse junto con los tiempos de espera y la utilización de los equipos.
+
+## 9. Registro de datos pendientes
+
+Para completar los cálculos de capacidad se requiere recopilar o justificar los siguientes datos:
+
+| Dato requerido | Unidad | Aplicación |
+|---|---|---|
+| Masa de leche por lote | kg/lote | Dimensionamiento y balance de materiales |
+| Masa de producto terminado por lote | kg/lote | Producción y rendimiento |
+| Capacidad útil de cada equipo | L o kg | Verificación del tamaño de lote |
+| Tiempo efectivo de cada operación | min o h | Cálculo de capacidad de procesamiento |
+| Tiempo de limpieza y preparación | min | Estimación de disponibilidad |
+| Duración del turno | h/turno | Capacidad por turno |
+| Disponibilidad de equipos | % | Capacidad efectiva |
+| Tiempo de maduración | h o días | Capacidad de la cámara y programación |
+| Capacidad de almacenamiento | kg o L | Evaluación de restricciones logísticas |
+
+Los datos obtenidos deberán registrarse con su unidad y origen. Los valores calculados deberán conservar la referencia a los datos utilizados, mientras que los supuestos académicos deberán identificarse explícitamente.
+
+## 10. Estado del modelamiento
+
+La estructura de indicadores y los criterios de cálculo de capacidad se encuentran definidos para las tres referencias. Los valores numéricos quedan pendientes de validación y de la recopilación de información técnica u operativa.
+
+La siguiente etapa del modelamiento utilizará estos indicadores para caracterizar los recursos requeridos por la línea y relacionarlos con los equipos, el personal, los materiales y los servicios industriales necesarios para la producción.
