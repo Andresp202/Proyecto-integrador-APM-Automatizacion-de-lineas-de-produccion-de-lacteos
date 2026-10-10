@@ -995,5 +995,111 @@ Cada operación del `Process Master` servirá como referencia para las siguiente
 
 > **Nota metodológica:** Las secuencias anteriores representan el modelo académico de la línea de quesos. Las fuentes técnicas permiten establecer operaciones características de la elaboración de queso, pero no permiten inferir automáticamente los procedimientos internos específicos de Alpina. Por ello, los parámetros industriales específicos deberán clasificarse como `PUBLIC`, `REFERENCE`, `ASSUMED`, `CALCULATED` o `PROPOSED` según corresponda.
 
+
+# Capa 5 — Equipos
+
+## 1. Objetivo
+
+Identificar los equipos industriales asociados a las operaciones de la línea de quesos, describiendo su función, las operaciones que soportan y las características técnicas relevantes para el modelamiento de la planta.
+
+Este modelo utiliza como referencia la clasificación de productos definida en la Capa 1 y los flujos de proceso establecidos en las Capas 3 y 4.
+
+**Alcance:** los equipos presentados corresponden a una propuesta de modelamiento académico. No constituyen un inventario verificado de los equipos instalados en la planta de Alpina en Sopó.
+
+## 2. Inventario preliminar de equipos
+
+| ID | Equipo | Operación asociada | Función principal | Productos | Origen/Estado |
+|---|---|---|---|---|---|
+| Q-EQ-001 | Tanque de recepción de leche | Q-OP-001 | Recibir temporalmente la leche cruda | Todos | PROPOSED |
+| Q-EQ-002 | Sistema de almacenamiento refrigerado de leche | Q-OP-003 | Conservar la leche antes del procesamiento | Todos | PROPOSED |
+| Q-EQ-003 | Sistema de preparación de leche | Q-OP-004 | Acondicionar la leche para su procesamiento | Todos | PROPOSED |
+| Q-EQ-004 | Pasteurizador o sistema de tratamiento térmico | Q-OP-005 | Aplicar el tratamiento térmico requerido | Todos | REFERENCE |
+| Q-EQ-005 | Tanque de elaboración de queso | Q-OP-006, Q-OP-007 | Permitir la inoculación y la coagulación | Todos | REFERENCE |
+| Q-EQ-006 | Sistema de corte de cuajada | Q-OP-008 | Dividir la cuajada para facilitar la separación del suero | Todos | REFERENCE |
+| Q-EQ-007 | Tina o tanque de tratamiento de cuajada | Q-OP-009 | Permitir agitación y acondicionamiento de la cuajada | Todos | REFERENCE |
+| Q-EQ-008 | Sistema de desuerado | Q-OP-010 | Separar la cuajada del suero | Todos | REFERENCE |
+| Q-EQ-009 | Sistema de tratamiento específico de cuajada | Q-OP-011 | Ejecutar el acondicionamiento particular requerido por cada queso | Todos | REFERENCE |
+| Q-EQ-010 | Sistema de salado | Q-OP-012 | Incorporar sal al producto cuando corresponda | Campesino y Sopó | REFERENCE |
+| Q-EQ-011 | Sistema de moldeado | Q-OP-013 | Dar forma al queso | Todos | REFERENCE |
+| Q-EQ-012 | Prensa para queso | Q-OP-014 | Aplicar presión para obtener las características requeridas | Campesino y Sopó | REFERENCE |
+| Q-EQ-013 | Sistema de estirado o hilado | Q-OP-015 | Estirar la cuajada característica de la mozzarella | Mozzarella | REFERENCE |
+| Q-EQ-014 | Cámara o sistema de maduración | Q-OP-016 | Mantener condiciones controladas durante la maduración | Sopó | PROPOSED |
+| Q-EQ-015 | Sistema de enfriamiento o acondicionamiento | Q-OP-017 | Llevar el producto a las condiciones requeridas para las etapas posteriores | Todos | PROPOSED |
+| Q-EQ-016 | Máquina o sistema de empaque | Q-OP-018 | Empacar y proteger el producto terminado | Todos | PROPOSED |
+| Q-EQ-017 | Sistema de almacenamiento de producto terminado | Q-OP-019 | Conservar el producto empacado antes del despacho | Todos | PROPOSED |
+| Q-EQ-018 | Sistema de despacho y manipulación | Q-OP-020 | Facilitar la preparación y salida del producto terminado | Todos | PROPOSED |
+
+**Interpretación de los estados:**
+
+- **REFERENCE:** equipo o función técnicamente reconocible en procesos de elaboración de queso; no implica que se haya verificado su instalación en Alpina.
+- **PROPOSED:** equipo o sistema incluido provisionalmente en el modelo, pendiente de validación.
+- **PUBLIC:** se utilizará cuando exista evidencia pública verificable sobre un equipo específico de la planta.
+- **ASSUMED:** se utilizará para una característica adoptada explícitamente como supuesto del modelo.
+- **CALCULATED:** se utilizará para un valor obtenido mediante cálculo.
+
+## 3. Características técnicas que debemos registrar
+
+Para cada equipo se recopilarán progresivamente las siguientes características, cuando sean pertinentes:
+
+| Característica | Unidad estándar | Utilidad |
+|---|---|---|
+| Capacidad de procesamiento | L/h o kg/h | Estimar el flujo de producción |
+| Capacidad por lote | L/lote o kg/lote | Relacionar el equipo con el tamaño del batch |
+| Tiempo de operación | min o h | Estimar duración y utilización |
+| Temperatura de operación | °C | Modelar las condiciones térmicas |
+| Presión de operación | bar | Caracterizar equipos que trabajen a presión |
+| Potencia instalada | kW | Estimar requerimientos eléctricos |
+| Consumo energético | kWh | Evaluar el consumo por operación |
+| Dimensiones o volumen útil | m³ o L | Evaluar almacenamiento y capacidad física |
+| Requerimientos de servicios | Según servicio | Identificar agua, vapor, refrigeración, aire o electricidad |
+
+No todas las características aplican a todos los equipos. Por ejemplo, la presión será relevante para determinados sistemas, mientras que el volumen útil será especialmente importante para tanques y cámaras.
+
+## 4. Relación entre equipos y operaciones
+
+Un equipo puede intervenir en más de una operación y una operación puede requerir varios equipos. Por tanto, la relación no debe interpretarse como una correspondencia obligatoria de uno a uno.
+
+Ejemplos:
+
+- El tanque de elaboración puede utilizarse para la inoculación, la coagulación y algunas etapas de tratamiento de la cuajada, dependiendo de su configuración.
+- El tratamiento térmico puede implementarse mediante un sistema por lotes o uno continuo.
+- El almacenamiento refrigerado puede depender de un sistema central de refrigeración compartido con otras líneas.
+- El empaque puede integrar alimentación, dosificación, sellado, etiquetado y verificación, según la presentación del producto.
+
+La configuración exacta se mantiene pendiente de validación.
+
+## 5. Integración con las demás capas
+
+La Capa 5 se conecta directamente con el resto del modelo:
+
+- **Capa 4 — Proceso detallado:** identifica las operaciones que requieren equipos.
+- **Capa 6 — Variables:** determina qué magnitudes deben medirse o controlarse en cada equipo.
+- **Capa 7 — Sensores y actuadores:** identifica los elementos utilizados para medir y actuar.
+- **Capa 8 — Tiempos:** caracteriza la duración de las operaciones.
+- **Capa 9 — Capacidades:** permite estimar la producción posible.
+- **Capa 10 — Recursos:** incorpora personal, servicios y otros recursos necesarios.
+- **Capa 11 — Recetas:** relaciona las condiciones de operación con cada producto.
+- **Capa 12 — Batches y trazabilidad:** permite asociar los equipos utilizados con cada ejecución de producción.
+
+## 6. Información pendiente
+
+Antes de atribuir capacidades o especificaciones numéricas a los equipos, debemos identificar qué información está disponible y cuál requiere estimación.
+
+| Información | Estado |
+|---|---|
+| Inventario real de equipos de Alpina Sopó | Pendiente de verificar |
+| Fabricante y modelo de cada equipo | Pendiente |
+| Capacidades nominales y útiles | Pendiente |
+| Tiempos de operación y limpieza | Pendiente |
+| Instrumentación instalada | Se desarrollará en las Capas 6 y 7 |
+| Consumos energéticos y servicios | Pendiente |
+| Equipos compartidos con otras líneas | Pendiente de integración de planta |
+
+## 7. Criterio de cierre de la capa
+
+La capa se considerará suficientemente desarrollada cuando cada operación del proceso tenga identificados los equipos requeridos, su función y las características técnicas relevantes, distinguiendo claramente la información verificada de las referencias técnicas y los supuestos.
+
+**Estado actual:** inventario conceptual preliminar definido. Las capacidades, especificaciones y correspondencia con los equipos reales de la planta quedan pendientes de validación.
+
  
 
