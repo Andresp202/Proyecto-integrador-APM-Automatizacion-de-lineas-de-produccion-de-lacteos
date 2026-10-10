@@ -1307,3 +1307,122 @@ La selección de sensores y actuadores deberá considerar:
 Se ha establecido una relación preliminar entre las variables identificadas en la Capa 6 y los elementos de medición y actuación potencialmente requeridos.
 
 Quedan pendientes la verificación de la instrumentación existente, la identificación de los equipos que integran sistemas de control propios, la definición de rangos y precisiones y la selección de tecnologías específicas. Estas actividades permitirán diferenciar la instrumentación existente de las necesidades de modernización propuestas.
+
+
+# Capa 8 — Tiempos
+
+## 1. Objetivo
+
+Identificar y clasificar los tiempos asociados a las operaciones de elaboración de queso Campesino, Mozzarella y Sopó, con el fin de establecer una base para analizar la duración del proceso, estimar la utilización de los equipos y calcular las capacidades de producción.
+
+Los tiempos se registrarán por operación y, cuando la información esté disponible, por producto y tamaño de lote. Como no se dispone de registros operativos verificados de la planta de referencia, no se asignan duraciones numéricas a las operaciones en esta etapa.
+
+## 2. Clasificación de los tiempos
+
+Para caracterizar el proceso se consideran las siguientes categorías:
+
+| Tipo de tiempo | Descripción | Unidad |
+|---|---|---|
+| Tiempo de procesamiento | Tiempo durante el cual se ejecuta una operación productiva | min o h |
+| Tiempo de preparación | Tiempo requerido para preparar un equipo u operación antes de producir | min o h |
+| Tiempo de espera | Tiempo durante el cual el producto permanece esperando la siguiente operación | min o h |
+| Tiempo de transferencia | Tiempo requerido para trasladar el producto entre operaciones | min o h |
+| Tiempo de limpieza | Tiempo requerido para limpiar y acondicionar equipos entre operaciones o lotes | min o h |
+| Tiempo de maduración | Tiempo durante el cual el queso permanece bajo condiciones controladas de maduración | h o días |
+| Tiempo de ciclo | Tiempo necesario para completar una unidad de referencia de producción, según los límites definidos | min/lote, h/lote u otra unidad claramente especificada |
+| Tiempo total de lote | Tiempo transcurrido entre el inicio y el final del lote dentro de los límites definidos | min/lote o h/lote |
+
+Los tiempos de procesamiento pueden incluir actividades simultáneas o automáticas. Por ello, no deben sumarse indiscriminadamente todos los tiempos para obtener la duración total: es necesario considerar la secuencia del proceso, las esperas y las operaciones que pueden ejecutarse en paralelo.
+
+## 3. Registro de tiempos por operación
+
+La siguiente tabla establece los registros que deberán completarse para cada operación del proceso.
+
+| ID | Operación | Tiempo por registrar | Unidad | Productos | Origen/Estado |
+|---|---|---|---|---|---|
+| Q-TMP-001 | Recepción de leche | Duración de recepción | min/lote | Todos | PENDING |
+| Q-TMP-002 | Control de recepción | Duración de inspección y aprobación | min/lote | Todos | PENDING |
+| Q-TMP-003 | Almacenamiento de leche | Tiempo de permanencia antes del proceso | h/lote | Todos | PENDING |
+| Q-TMP-004 | Preparación de la leche | Duración de preparación | min/lote | Todos | PENDING |
+| Q-TMP-005 | Tratamiento térmico | Tiempo efectivo de tratamiento | min/lote | Todos | PENDING |
+| Q-TMP-006 | Cultivo e inoculación | Duración de la operación de inoculación | min/lote | Todos | PENDING |
+| Q-TMP-007 | Coagulación | Tiempo de coagulación | min/lote | Todos | PENDING |
+| Q-TMP-008 | Corte de cuajada | Duración del corte | min/lote | Todos | PENDING |
+| Q-TMP-009 | Agitación y tratamiento de cuajada | Tiempo de agitación y tratamiento | min/lote | Todos | PENDING |
+| Q-TMP-010 | Desuerado | Duración del desuerado | min/lote | Todos | PENDING |
+| Q-TMP-011 | Tratamiento específico de cuajada | Duración del tratamiento | min/lote | Según producto | PENDING |
+| Q-TMP-012 | Salado | Duración del salado | min/lote | Campesino y Sopó | PENDING |
+| Q-TMP-013 | Moldeado | Duración del moldeado | min/lote | Según producto | PENDING |
+| Q-TMP-014 | Prensado | Tiempo efectivo de prensado | min/lote | Según producto | PENDING |
+| Q-TMP-015 | Estirado o hilado | Duración del estirado | min/lote | Mozzarella | PENDING |
+| Q-TMP-016 | Maduración | Tiempo de maduración | h o días/lote | Sopó | PENDING |
+| Q-TMP-017 | Enfriamiento y acondicionamiento | Duración del enfriamiento | min/lote | Todos | PENDING |
+| Q-TMP-018 | Empaque | Tiempo de procesamiento del lote | min/lote | Todos | PENDING |
+| Q-TMP-019 | Almacenamiento de producto terminado | Tiempo de permanencia antes del despacho | h o días/lote | Todos | PENDING |
+| Q-TMP-020 | Despacho | Duración de preparación y salida | min/lote | Todos | PENDING |
+
+**Estado PENDING:** el registro está definido, pero el valor debe recopilarse, estimarse con una fuente técnica o calcularse. Una vez obtenido, se actualizará con su unidad y su origen correspondiente.
+
+## 4. Tiempos adicionales por equipo y lote
+
+Además del tiempo de cada operación, deben registrarse los tiempos que afectan la disponibilidad de los equipos y la duración del lote.
+
+| ID | Indicador temporal | Descripción | Unidad | Origen/Estado |
+|---|---|---|---|---|
+| Q-TMP-021 | Tiempo de preparación del equipo | Acondicionamiento previo a la operación | min/lote | PENDING |
+| Q-TMP-022 | Tiempo de limpieza | Limpieza del equipo después de su utilización o entre lotes | min/lote | PENDING |
+| Q-TMP-023 | Tiempo de cambio de producto | Ajustes necesarios al cambiar de referencia | min/cambio | PENDING |
+| Q-TMP-024 | Tiempo de espera entre operaciones | Demora entre la finalización de una operación y el inicio de la siguiente | min/lote | PENDING |
+| Q-TMP-025 | Tiempo de transferencia | Movimiento del producto entre operaciones | min/lote | PENDING |
+| Q-TMP-026 | Tiempo de ocupación del equipo | Tiempo total durante el cual un equipo permanece comprometido con el lote | min/lote | PENDING |
+| Q-TMP-027 | Tiempo total de fabricación | Tiempo transcurrido desde el inicio definido del proceso hasta su finalización | h/lote o días/lote | PENDING |
+
+El tiempo de ocupación de un equipo puede ser mayor que su tiempo de procesamiento. Por ejemplo, un tanque puede permanecer ocupado durante la preparación, el tratamiento, la descarga y la limpieza, aunque algunas de esas actividades no transformen directamente el producto.
+
+## 5. Diferencias temporales entre productos
+
+Las tres referencias presentan diferencias relevantes para el análisis temporal.
+
+| Producto | Etapas de especial interés | Implicación para el análisis |
+|---|---|---|
+| Queso Campesino | Coagulación, desuerado, salado, moldeado y prensado cuando aplique | La duración depende de la secuencia y de las condiciones de elaboración |
+| Queso Mozzarella | Coagulación, desuerado, preparación de cuajada y estirado/hilado | El estirado constituye una etapa específica que debe caracterizarse por separado |
+| Queso Sopó | Elaboración, prensado, salado y maduración | La maduración puede prolongar significativamente el tiempo transcurrido y ocupar capacidad de almacenamiento |
+
+El tiempo de maduración debe distinguirse del tiempo de operación activa. Aunque durante la maduración no haya intervención continua de un operario, el producto ocupa espacio y requiere mantener condiciones controladas durante el periodo correspondiente.
+
+## 6. Cálculo de tiempos del proceso
+
+El tiempo total de fabricación de un lote se determina a partir de la diferencia entre el instante de finalización y el instante de inicio del proceso, definidos según los límites del análisis.
+
+$$
+T_{\mathrm{total}} = t_{\mathrm{final}} - t_{\mathrm{inicio}}
+$$
+
+Cuando las operaciones se ejecutan de manera secuencial y no existen actividades simultáneas, el tiempo total puede estimarse sumando la duración de cada operación y los tiempos de espera entre ellas.
+
+ 
+**Consideraciones de cálculo**
+
+La suma directa de los tiempos solo es válida cuando las operaciones y esperas se han definido sin solapamientos. Si existen operaciones simultáneas, procesamiento continuo o actividades que se ejecutan en paralelo, el tiempo total debe determinarse a partir de la secuencia real del proceso.
+
+Asimismo, el tiempo total de fabricación no equivale necesariamente al tiempo de ocupación de un equipo. Para estimar la capacidad de cada equipo en la Capa 9, se utilizará el tiempo durante el cual permanece comprometido con el lote, incluyendo las actividades auxiliares que correspondan.
+
+## 7. Fuentes de información
+
+Los tiempos podrán obtenerse a partir de:
+
+- Registros operativos y hojas de producción.
+- Manuales técnicos de los equipos.
+- Literatura técnica sobre elaboración de quesos.
+- Observaciones o mediciones del proceso, cuando estén disponibles.
+- Supuestos explícitos del modelo académico, debidamente identificados.
+- Cálculos basados en capacidades, secuencias y condiciones operativas documentadas.
+
+Los tiempos medidos, referenciados, asumidos y calculados deberán mantenerse diferenciados en la base de datos del proyecto.
+
+## 8. Estado del modelamiento
+
+Se ha definido la estructura de registro temporal para las operaciones de las tres referencias, junto con los tiempos auxiliares que afectan la disponibilidad de los equipos y la duración de los lotes.
+
+Los valores numéricos quedan pendientes de recopilación o estimación justificada. Esta información se utilizará en la Capa 9 para caracterizar la capacidad por lote y por unidad de tiempo, considerando las restricciones de los equipos y las operaciones compartidas.
