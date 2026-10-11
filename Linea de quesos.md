@@ -1429,177 +1429,792 @@ Los valores numéricos quedan pendientes de recopilación o estimación justific
 
 
 
-# Capa 9 — Capacidades
+ # Capa 9 — Capacidades
 
 ## 1. Objetivo
 
-Caracterizar la capacidad de producción de la línea de quesos para las referencias Campesino, Mozzarella y Sopó, considerando el tamaño de lote, los tiempos de operación, las capacidades nominales de los equipos y las restricciones que pueden afectar el flujo productivo.
+Definir los indicadores necesarios para caracterizar la capacidad productiva de la línea de quesos de referencia, considerando los productos Queso Campesino, Queso Mozzarella y Queso Sopó.
 
-El análisis permitirá estimar la producción por lote, hora, turno y día, así como identificar los equipos y operaciones que podrían limitar la capacidad global de la línea.
+Esta capa relaciona los tamaños de lote, los tiempos de operación, las capacidades de los equipos y las restricciones del proceso para estimar la producción posible por hora, turno y día.
 
-Debido a que no se dispone de datos operativos verificados de la planta de referencia, las capacidades numéricas se mantienen pendientes de recopilación o estimación técnicamente justificada.
+**Criterio de modelamiento:** no se asignan capacidades numéricas específicas a la planta de referencia mientras no se disponga de información verificable. Los valores se incorporarán posteriormente como datos públicos, referencias técnicas, supuestos académicos o resultados calculados.
 
 ## 2. Indicadores de capacidad
 
-| ID | Indicador | Unidad estándar | Descripción | Origen/Estado |
-|---|---|---|---|---|
-| Q-CAP-001 | Tamaño de lote | kg/lote | Masa de producto procesada o producida por lote, indicando claramente el punto de medición | PENDING |
-| Q-CAP-002 | Capacidad nominal del equipo | kg/h o L/h | Capacidad declarada por el fabricante para las condiciones especificadas | PENDING |
-| Q-CAP-003 | Capacidad efectiva del equipo | kg/h | Producción por unidad de tiempo considerando las condiciones reales de operación | PENDING |
-| Q-CAP-004 | Capacidad de producción por lote | kg/lote | Cantidad de producto terminado obtenida en un lote | PENDING |
-| Q-CAP-005 | Capacidad de producción por hora | kg/h | Producción obtenida por hora efectiva de operación | PENDING |
-| Q-CAP-006 | Capacidad de producción por turno | kg/turno | Producción posible durante un turno definido | PENDING |
-| Q-CAP-007 | Capacidad de producción diaria | kg/día | Producción posible durante el periodo diario definido | PENDING |
-| Q-CAP-008 | Capacidad de almacenamiento | kg o L | Cantidad máxima que puede almacenarse en un equipo o área | PENDING |
-| Q-CAP-009 | Capacidad de maduración | kg | Cantidad de producto que puede mantenerse simultáneamente bajo las condiciones de maduración requeridas | PENDING |
-| Q-CAP-010 | Utilización del equipo | % | Relación entre el tiempo de utilización y el tiempo disponible definido | PENDING |
-| Q-CAP-011 | Rendimiento de producto | kg de producto/kg de materia prima | Relación entre la masa obtenida y la masa de materia prima procesada | PENDING |
-| Q-CAP-012 | Capacidad de la línea | kg/h | Producción sostenible de la línea considerando las restricciones de sus operaciones | PENDING |
+| ID | Indicador | Unidad estándar | Valor | Origen/Estado | Observaciones |
+|---|---|---|---|---|---|
+| Q-CAP-001 | Tamaño de lote | kg/lote | Pendiente | PENDING | Cantidad procesada en un lote |
+| Q-CAP-002 | Capacidad nominal del equipo | kg/h o L/h | Pendiente | PENDING | Depende del equipo y de la operación |
+| Q-CAP-003 | Capacidad efectiva del equipo | kg/h | Pendiente | PENDING | Considera las condiciones reales de operación |
+| Q-CAP-004 | Producción obtenida por lote | kg/lote | Pendiente | PENDING | Masa de producto terminado por lote |
+| Q-CAP-005 | Capacidad de producción por hora | kg/h | Pendiente | PENDING | Producción efectiva por unidad de tiempo |
+| Q-CAP-006 | Capacidad de producción por turno | kg/turno | Pendiente | PENDING | Producción estimada durante un turno |
+| Q-CAP-007 | Capacidad de producción diaria | kg/día | Pendiente | PENDING | Producción estimada durante un día |
+| Q-CAP-008 | Capacidad de almacenamiento de producto terminado | kg o L | Pendiente | PENDING | Depende del tipo de almacenamiento |
+| Q-CAP-009 | Capacidad de maduración | kg | Pendiente | PENDING | Aplicable al Queso Sopó |
+| Q-CAP-010 | Utilización del equipo | % | Pendiente | PENDING | Relación entre uso efectivo y disponibilidad |
+| Q-CAP-011 | Rendimiento del proceso | kg de producto/kg de leche | Pendiente | PENDING | Relación entre producto terminado y leche procesada |
+| Q-CAP-012 | Capacidad de la línea | kg/h | Pendiente | PENDING | Limitada por la operación restrictiva del proceso |
 
-Los indicadores deberán asociarse con el producto, el periodo de análisis y las condiciones operativas correspondientes. Las capacidades de productos diferentes no deben sumarse sin verificar que comparten una base de medición comparable.
+**Nota:** PENDING indica que el valor aún no ha sido definido. Cuando se incorpore un dato, se registrará su origen correspondiente: PUBLIC, REFERENCE, ASSUMED, CALCULATED o PROPOSED.
 
-## 3. Capacidad por lote
+## 3. Capacidad de procesamiento de los equipos
 
-La capacidad por lote representa la cantidad de producto que se procesa u obtiene durante una ejecución de producción.
+La capacidad de un equipo puede estimarse a partir de la cantidad de material procesado y el tiempo requerido para procesarlo.
 
-Se deben distinguir dos magnitudes:
-
-- **Masa de entrada por lote:** cantidad de materia prima que ingresa al proceso.
-- **Masa de producto terminado por lote:** cantidad obtenida al finalizar el proceso.
-
-Estas magnitudes no son equivalentes debido a la separación de suero, las pérdidas de proceso, la incorporación de ingredientes y otras transformaciones de masa.
-
-La capacidad del equipo que procesa el lote debe ser suficiente para la cantidad que recibe en la operación correspondiente. En equipos con procesamiento por lotes, el volumen o masa útil disponible puede limitar el tamaño de lote incluso si su capacidad nominal de procesamiento por hora es elevada.
-
-## 4. Capacidad de procesamiento por equipo
-
-Cuando se conoce la cantidad procesada y el tiempo efectivo correspondiente, la capacidad de procesamiento puede estimarse mediante la siguiente expresión:
+**Ecuación 1. Capacidad de procesamiento**
 
 $$
-C_{\mathrm{equipo}}=\frac{M_{\mathrm{procesada}}}{T_{\mathrm{proceso}}}
+C_{\text{equipo}}=\frac{M_{\text{procesada}}}{T_{\text{proceso}}}
 $$
 
 Donde:
 
-- \(C_{\mathrm{equipo}}\): capacidad de procesamiento, en kg/h.
-- \(M_{\mathrm{procesada}}\): masa procesada, en kg.
-- \(T_{\mathrm{proceso}}\): tiempo efectivo de procesamiento, en horas.
+- C_equipo: capacidad de procesamiento, en kg/h.
+- M_procesada: masa procesada, en kg.
+- T_proceso: tiempo efectivo de procesamiento, en horas.
 
-Si la operación se mide en litros, la capacidad se expresará en L/h. No se deben convertir litros a kilogramos sin disponer de una densidad apropiada para el producto y las condiciones consideradas.
+La ecuación aplica cuando la cantidad procesada y el tiempo se expresan en unidades compatibles. Para equipos que operan principalmente con líquidos, también puede emplearse una capacidad volumétrica en L/h.
 
-Esta estimación describe la capacidad durante el tiempo de procesamiento. Para calcular la producción por turno o día, también deben considerarse la preparación, la limpieza, las esperas, los cambios de producto y la disponibilidad efectiva del equipo.
+La capacidad nominal indicada por el fabricante no necesariamente coincide con la capacidad efectiva del proceso. Esta última puede verse afectada por los tiempos de preparación, limpieza, espera, transferencia y disponibilidad del equipo.
 
-## 5. Capacidad de producción por turno
+## 4. Capacidad de producción por lote y por turno
 
-Para estimar la producción por turno, se debe determinar cuánto tiempo está realmente disponible para fabricar producto y cuánto tarda cada lote en ocupar los recursos limitantes.
+Para estimar la producción por turno es necesario conocer el tamaño de lote y el tiempo de ciclo. En una primera aproximación, cuando los lotes se procesan secuencialmente y no existe superposición entre ellos, el número de lotes completos que pueden procesarse se calcula mediante:
 
-En el caso de lotes completos, una estimación inicial de la cantidad de lotes posibles es:
+**Ecuación 2. Número de lotes por turno**
 
 $$
-N_{\mathrm{lotes}}
-=
+N_{\text{lotes}}=
 \left\lfloor
-\frac{T_{\mathrm{disponible}}}{T_{\mathrm{ciclo}}}
+\frac{T_{\text{disponible}}}{T_{\text{ciclo}}}
 \right\rfloor
 $$
 
-La expresión es aplicable cuando los ciclos considerados no se solapan en el recurso analizado y todos los lotes tienen una duración comparable.
+Donde:
 
-La producción por turno se estima como:
+- N_lotes: número de lotes completos por turno.
+- T_disponible: tiempo disponible para producción, en horas.
+- T_ciclo: tiempo requerido para completar un ciclo, en horas.
+- El operador piso indica que se toma únicamente el número entero inferior.
+
+La producción estimada por turno se calcula como:
+
+**Ecuación 3. Producción por turno**
 
 $$
-P_{\mathrm{turno}}
-=
-N_{\mathrm{lotes}}\times M_{\mathrm{lote}}
+P_{\text{turno}}=N_{\text{lotes}}\times M_{\text{lote}}
 $$
 
 Donde:
 
-- \(N_{\mathrm{lotes}}\): número de lotes completos que pueden procesarse durante el turno.
-- \(T_{\mathrm{disponible}}\): tiempo disponible para la producción, en horas.
-- \(T_{\mathrm{ciclo}}\): tiempo de ciclo por lote, en horas.
-- \(M_{\mathrm{lote}}\): masa de producto terminado por lote, en kg.
-- \(P_{\mathrm{turno}}\): producción estimada por turno, en kg/turno.
+- P_turno: producción por turno, en kg/turno.
+- N_lotes: número de lotes completos por turno.
+- M_lote: masa de producto terminado por lote, en kg/lote.
 
-El cálculo definitivo deberá considerar las operaciones compartidas, los tiempos de limpieza y los posibles solapamientos entre equipos. En procesos continuos, la capacidad por turno deberá estimarse a partir del caudal efectivo y del tiempo disponible.
+Esta aproximación debe ajustarse cuando existan operaciones simultáneas, equipos compartidos, tiempos de limpieza entre lotes, cambios de referencia o restricciones de almacenamiento.
 
-## 6. Rendimiento del proceso
+## 5. Rendimiento del proceso
 
-El rendimiento relaciona la cantidad de producto terminado con la cantidad de materia prima utilizada. Para el análisis preliminar de la línea de quesos, puede calcularse mediante:
+El rendimiento permite relacionar la cantidad de producto terminado con la cantidad de leche procesada.
 
-$$
-R_{\mathrm{proceso}}
-=
-\frac{M_{\mathrm{producto\ terminado}}}
-{M_{\mathrm{leche\ procesada}}}
-$$
-
-Si se expresa como porcentaje:
+**Ecuación 4. Rendimiento másico**
 
 $$
-R_{\mathrm{proceso}}(\%)
-=
-\frac{M_{\mathrm{producto\ terminado}}}
-{M_{\mathrm{leche\ procesada}}}
+R_{\text{proceso}}=
+\frac{M_{\text{producto terminado}}}
+{M_{\text{leche procesada}}}
+$$
+
+Si se requiere expresar el resultado como porcentaje:
+
+**Ecuación 5. Rendimiento porcentual**
+
+$$
+R_{\text{proceso}}(\%)=
+\frac{M_{\text{producto terminado}}}
+{M_{\text{leche procesada}}}
 \times 100
 $$
 
-Este indicador permite comparar lotes y evaluar la consistencia de la producción. Sin embargo, el resultado depende de la referencia de queso, la composición de la leche, la formulación y las condiciones de procesamiento.
+Las masas deben corresponder al mismo lote o conjunto de producción. El rendimiento puede variar entre referencias debido a las diferencias en el procesamiento de la cuajada, el desuerado, la humedad final y las características del producto.
 
-El balance de materiales deberá considerar por separado las materias primas adicionales, el suero separado, los residuos y las demás salidas pertinentes. El rendimiento no debe interpretarse automáticamente como una medida de eficiencia sin analizar esas condiciones.
+El suero separado y otros residuos deben considerarse en el balance de masa para evitar interpretar el rendimiento como si toda la leche se convirtiera en queso.
 
-## 7. Capacidad de almacenamiento y maduración
+## 6. Capacidad de almacenamiento y maduración
 
-La capacidad de almacenamiento debe analizarse de acuerdo con la naturaleza del material y las condiciones de conservación requeridas.
+La capacidad de almacenamiento debe evaluarse de acuerdo con el tipo de producto y las condiciones requeridas para conservarlo.
 
-| Sistema | Magnitud principal | Aspectos que limitan la capacidad |
+- **Leche:** capacidad disponible para almacenar la materia prima antes de su procesamiento.
+- **Producto en proceso:** espacio disponible en tanques, tinas, moldes u otros equipos intermedios.
+- **Producto terminado:** capacidad disponible para conservar los quesos empacados antes del despacho.
+- **Maduración:** capacidad disponible para mantener el Queso Sopó durante el periodo requerido.
+
+Para el producto madurado, la capacidad no depende únicamente del espacio físico. También está condicionada por la duración de la maduración, la ocupación de las instalaciones y las condiciones de temperatura y humedad.
+
+Las capacidades físicas y los tiempos de permanencia se definirán cuando se disponga de datos suficientes.
+
+## 7. Identificación del cuello de botella
+
+La capacidad global de la línea no debe calcularse sumando directamente las capacidades individuales de todos los equipos.
+
+En un proceso secuencial, la operación restrictiva puede determinar la capacidad máxima de producción. Sin embargo, en una línea por lotes también deben considerarse los tiempos de ciclo, las operaciones compartidas, las esperas y la posibilidad de ejecutar actividades en paralelo.
+
+Para identificar el cuello de botella se deberán comparar:
+
+- La capacidad efectiva de cada equipo.
+- El tiempo de ciclo de cada operación.
+- La disponibilidad de equipos y personal.
+- Los tiempos de limpieza y preparación.
+- La ocupación de los sistemas de almacenamiento y maduración.
+- Las restricciones generadas por recursos compartidos.
+
+El análisis se realizará después de completar las capas de tiempos y recursos y de establecer los valores necesarios para cada operación.
+
+## 8. Datos pendientes para el cálculo
+
+| Dato requerido | Unidad | Capa relacionada | Estado |
+|---|---|---|---|
+| Tamaño de lote por referencia | kg/lote | Recetas y batches | PENDING |
+| Masa de leche procesada por lote | kg/lote | Materias primas y recetas | PENDING |
+| Masa de producto terminado por lote | kg/lote | Batches y trazabilidad | PENDING |
+| Tiempo de ciclo por referencia | h/lote | Tiempos | PENDING |
+| Capacidad nominal de los equipos | kg/h o L/h | Equipos | PENDING |
+| Tiempo disponible por turno | h/turno | Tiempos y recursos | PENDING |
+| Tiempos de limpieza y preparación | min o h | Tiempos | PENDING |
+| Capacidad de almacenamiento | kg o L | Equipos y recursos | PENDING |
+| Tiempo y capacidad de maduración | h o días; kg | Tiempos y equipos | PENDING |
+| Pérdidas y rendimiento del proceso | kg; % | Materias primas y batches | PENDING |
+
+## 9. Relación con las demás capas
+
+- **Capa 2 — Materias primas:** proporciona las cantidades de entrada necesarias para el balance de masa.
+- **Capa 4 — Proceso detallado:** define la secuencia de operaciones.
+- **Capa 5 — Equipos:** identifica los equipos cuya capacidad debe evaluarse.
+- **Capa 8 — Tiempos:** proporciona los tiempos de operación, ciclo, limpieza y espera.
+- **Capa 10 — Recursos:** identifica las restricciones de personal, servicios e infraestructura.
+- **Capa 11 — Recetas:** permite diferenciar los parámetros y cantidades de cada referencia.
+- **Capa 12 — Batches y trazabilidad:** permitirá registrar las cantidades reales procesadas y obtenidas.
+
+## 10. Estado de la capa
+
+La estructura de indicadores y las ecuaciones de cálculo están definidas. Las capacidades numéricas permanecen pendientes hasta disponer de datos verificables o establecer supuestos académicos explícitos.
+
+La capacidad efectiva de la línea se determinará integrando la información de equipos, tiempos, recetas, batches y recursos, sin atribuir valores no verificados a la planta de referencia.
+
+
+
+
+
+# Capa 10 — Recursos
+
+## 1. Objetivo
+
+Identificar los recursos humanos, materiales, técnicos, energéticos, sanitarios e informáticos necesarios para operar la línea de quesos de referencia, considerando la elaboración de Queso Campesino, Queso Mozzarella y Queso Sopó.
+
+Esta capa complementa la identificación de equipos de la Capa 5 y el análisis de capacidades de la Capa 9. Su propósito es reconocer los recursos que intervienen en la producción y las posibles restricciones que pueden afectar la continuidad operativa.
+
+Los recursos aquí descritos corresponden al modelo académico de la línea. No se afirma que sean la dotación exacta instalada en la planta de referencia.
+
+## 2. Clasificación de los recursos
+
+Los recursos se agrupan en las siguientes categorías:
+
+- **Humanos:** personal requerido para operar, supervisar y verificar las actividades.
+- **Materiales:** materias primas, ingredientes, materiales auxiliares y elementos de empaque.
+- **Técnicos:** equipos y sistemas utilizados durante las operaciones.
+- **Servicios industriales:** agua, energía eléctrica, refrigeración, energía térmica y aire comprimido, cuando corresponda.
+- **Sanitarios:** productos y sistemas necesarios para limpieza y desinfección.
+- **Infraestructura:** espacios de almacenamiento, áreas de proceso y zonas de maduración.
+- **Información y tecnología:** sistemas para registrar la producción, controlar parámetros y mantener la trazabilidad.
+
+## 3. Recursos humanos
+
+| ID | Recurso | Función principal | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-RES-001 | Operario de recepción | Recibir y manipular la leche y verificar su identificación | persona/turno | PROPOSED |
+| Q-RES-002 | Operario de elaboración | Ejecutar y supervisar las operaciones de transformación | persona/turno | PROPOSED |
+| Q-RES-003 | Personal de control de calidad | Verificar materias primas, variables de proceso y producto | persona/turno | PROPOSED |
+| Q-RES-004 | Operario de empaque | Empacar e identificar el producto terminado | persona/turno | PROPOSED |
+| Q-RES-005 | Supervisor de producción | Coordinar operaciones, personal y cumplimiento del programa | persona/turno | PROPOSED |
+| Q-RES-006 | Personal de limpieza y saneamiento | Ejecutar las actividades de limpieza y desinfección | persona/turno | PROPOSED |
+
+La cantidad de personas por turno no se establece todavía. Su dimensionamiento dependerá del grado de automatización, la organización del trabajo, los tiempos de operación, las actividades simultáneas y las exigencias sanitarias.
+
+Una misma persona podría desempeñar varias funciones si la organización del proceso lo permite. Por tanto, la cantidad de roles identificados no equivale necesariamente al número de trabajadores requeridos.
+
+## 4. Materias primas y materiales auxiliares
+
+Las materias primas y los materiales de empaque ya tienen identificadores propios en la Capa 2. Por consistencia, se referencian aquí sin asignarles nuevos códigos de recurso.
+
+| ID existente | Recurso | Uso principal | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-MP-001 | Leche de vaca | Materia prima principal | kg o L | REFERENCE |
+| Q-MP-002 | Cultivos lácticos | Desarrollo de características del queso | kg o L, según presentación | REFERENCE |
+| Q-MP-003 | Cuajo o coagulante | Coagulación de la leche | kg o L, según presentación | REFERENCE |
+| Q-MP-004 | Sal (NaCl) | Salado y desarrollo de características del producto | kg | REFERENCE |
+| Q-MP-005 | Cloruro de calcio | Auxiliar de elaboración, cuando corresponda | kg o L, según presentación | REFERENCE |
+| Q-MA-001 | Empaque primario | Protección y presentación del producto | unidad | PROPOSED |
+| Q-MA-002 | Etiqueta | Identificación del producto | unidad | PROPOSED |
+| Q-MA-003 | Empaque secundario | Agrupación y transporte de unidades empacadas | unidad | PROPOSED |
+
+La cantidad requerida de cada material dependerá de la receta y del tamaño de lote. El uso de cloruro de calcio y las cantidades específicas de ingredientes deberán definirse por referencia cuando exista información técnica suficiente.
+
+## 5. Recursos técnicos
+
+Los equipos se encuentran identificados en la Capa 5. La tabla siguiente los relaciona con su función como recursos operativos, sin crear identificadores duplicados.
+
+| ID existente | Recurso técnico | Operaciones relacionadas | Origen/Estado |
+|---|---|---|---|
+| Q-EQ-001 | Tanque de recepción de leche | Q-OP-001 | PROPOSED |
+| Q-EQ-002 | Sistema de almacenamiento refrigerado de leche | Q-OP-003 | PROPOSED |
+| Q-EQ-003 | Sistema de preparación de leche | Q-OP-004 | PROPOSED |
+| Q-EQ-004 | Pasteurizador o sistema de tratamiento térmico | Q-OP-005 | REFERENCE |
+| Q-EQ-005 | Tanque de elaboración de queso | Q-OP-006 y Q-OP-007 | REFERENCE |
+| Q-EQ-006 | Sistema de corte de cuajada | Q-OP-008 | REFERENCE |
+| Q-EQ-007 | Tina o tanque de tratamiento de cuajada | Q-OP-009 | REFERENCE |
+| Q-EQ-008 | Sistema de desuerado | Q-OP-010 | REFERENCE |
+| Q-EQ-009 | Sistema de tratamiento específico de cuajada | Q-OP-011 | REFERENCE |
+| Q-EQ-010 | Sistema de salado | Q-OP-012 | REFERENCE |
+| Q-EQ-011 | Sistema de moldeado | Q-OP-013 | REFERENCE |
+| Q-EQ-012 | Prensa de queso | Q-OP-014 | REFERENCE |
+| Q-EQ-013 | Sistema de estirado o hilado | Q-OP-015 | REFERENCE |
+| Q-EQ-014 | Cámara o sistema de maduración | Q-OP-016 | PROPOSED |
+| Q-EQ-015 | Sistema de enfriamiento o acondicionamiento | Q-OP-017 | PROPOSED |
+| Q-EQ-016 | Máquina o sistema de empaque | Q-OP-018 | PROPOSED |
+| Q-EQ-017 | Sistema de almacenamiento de producto terminado | Q-OP-019 | PROPOSED |
+| Q-EQ-018 | Sistema de despacho y manipulación | Q-OP-020 | PROPOSED |
+
+Los equipos compartidos con otras líneas se identificarán durante la integración de planta. En esa etapa se evaluará si su disponibilidad representa una restricción para la producción global.
+
+## 6. Servicios industriales
+
+| ID | Recurso | Uso principal | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-RES-007 | Agua de proceso y limpieza | Preparación, limpieza y saneamiento, según requerimientos | L o L/h | PROPOSED |
+| Q-RES-008 | Energía eléctrica | Alimentación de motores, bombas, instrumentación y equipos | kWh | PROPOSED |
+| Q-RES-009 | Energía térmica | Calentamiento y tratamiento térmico mediante el sistema disponible | kWh térmicos o kg de vapor | PROPOSED |
+| Q-RES-010 | Refrigeración | Conservación de leche y producto, y enfriamiento cuando corresponda | kWh o capacidad térmica | PROPOSED |
+| Q-RES-011 | Aire comprimido | Accionamiento de dispositivos neumáticos, si se utilizan | bar | PROPOSED |
+
+La disponibilidad y el consumo de estos servicios no se encuentran cuantificados. Su uso deberá verificarse para cada equipo y operación.
+
+El agua, la energía térmica y la refrigeración pueden constituir recursos compartidos con otras líneas. Por esta razón, su disponibilidad deberá revisarse nuevamente en el modelo de integración de planta.
+
+## 7. Recursos de limpieza y saneamiento
+
+| ID | Recurso | Función | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-RES-012 | Productos de limpieza y desinfección | Limpieza sanitaria de superficies y equipos | L o kg | PROPOSED |
+| Q-RES-013 | Sistema de limpieza de equipos (CIP, si aplica) | Limpieza de circuitos y equipos compatibles | ciclo de limpieza | PROPOSED |
+| Q-RES-014 | Agua para enjuague | Retiro de residuos de productos de limpieza, cuando corresponda | L | PROPOSED |
+
+La inclusión de un sistema CIP (limpieza en sitio) es una posibilidad de modelamiento y no confirma su instalación en la planta de referencia.
+
+Los procedimientos, productos, concentraciones, temperaturas y frecuencias de limpieza deberán definirse con base en los requisitos sanitarios y las características de los equipos.
+
+## 8. Infraestructura y almacenamiento
+
+| ID | Recurso | Función | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-RES-015 | Área de recepción y manejo de leche | Recibir y transferir la materia prima | m² | PROPOSED |
+| Q-RES-016 | Área de elaboración | Alojar las operaciones de transformación | m² | PROPOSED |
+| Q-RES-017 | Área de empaque | Empacar e identificar el producto | m² | PROPOSED |
+| Q-RES-018 | Espacio de almacenamiento refrigerado | Conservar leche o producto terminado, según el sistema | kg o L | PROPOSED |
+| Q-RES-019 | Espacio de maduración | Mantener el producto durante su periodo de maduración | kg | PROPOSED |
+| Q-RES-020 | Área de almacenamiento de materiales | Conservar empaques, etiquetas y otros materiales | m² | PROPOSED |
+
+Las áreas y capacidades se mantienen pendientes de cuantificación. Su dimensionamiento deberá ser coherente con los tamaños de lote, las capacidades de producción y los tiempos de permanencia definidos en las capas anteriores.
+
+## 9. Recursos de información y tecnología
+
+| ID | Recurso | Función principal | Unidad de referencia | Origen/Estado |
+|---|---|---|---|---|
+| Q-RES-021 | Sistema de registro de producción | Registrar operaciones, cantidades y tiempos | registro o batch | PROPOSED |
+| Q-RES-022 | Sistema de identificación de lotes | Asociar materias primas, recetas y producto terminado | identificador de lote | PROPOSED |
+| Q-RES-023 | Registro de calidad | Documentar resultados de inspección y control | registro | PROPOSED |
+| Q-RES-024 | Sistema de almacenamiento de datos | Conservar información de producción y trazabilidad | registro digital | PROPOSED |
+
+Estos recursos representan funciones necesarias o propuestas para el modelo digital. No implican que la planta disponga de un sistema MES, SCADA, ERP u otra plataforma específica.
+
+La arquitectura digital y las posibles integraciones entre sistemas se definirán en la propuesta global de transformación digital industrial.
+
+## 10. Recursos compartidos con la planta
+
+La línea de quesos se modela inicialmente de forma independiente. Durante la integración de planta deberán revisarse los recursos que podrían ser utilizados por varias líneas, por ejemplo:
+
+- Suministro y almacenamiento de leche.
+- Sistemas de refrigeración.
+- Agua y tratamiento de efluentes.
+- Generación y distribución de energía térmica.
+- Suministro eléctrico y aire comprimido.
+- Sistemas de limpieza CIP.
+- Áreas de almacenamiento y logística.
+- Personal de calidad, mantenimiento y supervisión.
+- Infraestructura informática y sistemas de información.
+
+Los recursos confirmados como compartidos se identificarán con el prefijo `PL-`, por ejemplo, `PL-RES-001` para un recurso general de planta. No se asignan aquí esos identificadores porque su definición requiere revisar conjuntamente las tres líneas: Quesos, Yogurt y UHT.
+
+## 11. Relación con las demás capas
+
+- **Capa 2 — Materias primas:** identifica los materiales de entrada y sus cantidades.
+- **Capa 5 — Equipos:** define los equipos que prestan los servicios técnicos requeridos por la línea.
+- **Capa 7 — Sensores y actuadores:** identifica los elementos de medición y actuación.
+- **Capa 8 — Tiempos:** permite estimar la disponibilidad y ocupación de los recursos.
+- **Capa 9 — Capacidades:** relaciona la disponibilidad de recursos con la producción alcanzable.
+- **Capa 11 — Recetas:** determina los requerimientos de materiales y parámetros por referencia.
+- **Capa 12 — Batches y trazabilidad:** registra el uso de recursos y las condiciones de cada lote.
+
+## 12. Estado de la capa
+
+Se identificaron los principales recursos humanos, materiales, técnicos, industriales, sanitarios, físicos y digitales asociados al modelo de la línea de quesos.
+
+Los recursos propuestos, sus cantidades, disponibilidades y consumos permanecen pendientes de validación. La integración de recursos compartidos se realizará posteriormente a nivel de planta para evitar duplicidades y reconocer posibles restricciones de producción.
+
+
+
+# Capa 11 — Recetas
+
+## 1. Objetivo
+
+Definir la estructura de recetas de fabricación para las tres referencias de la línea de quesos:
+
+- Q-PRD-001 — Queso Campesino.
+- Q-PRD-002 — Queso Mozzarella.
+- Q-PRD-003 — Queso Sopó.
+
+La receta permite establecer los materiales requeridos, la secuencia de operaciones, las variables de proceso, las condiciones de calidad y los criterios necesarios para ejecutar una fabricación de manera controlada y reproducible.
+
+Las recetas incluidas en esta capa constituyen una estructura de modelamiento académico. No representan formulaciones propietarias ni parámetros internos verificados de Alpina Productos Alimenticios S.A.S.
+
+## 2. Diferencia entre producto, receta y batch
+
+| Elemento | Identificador de ejemplo | Función |
 |---|---|---|
-| Almacenamiento de leche | L o kg | Volumen útil, disponibilidad de tanques y condiciones de conservación |
-| Equipos de elaboración | L/lote o kg/lote | Volumen útil, masa admisible y secuencia de operaciones |
-| Almacenamiento intermedio | kg o L | Espacio disponible y tiempo de permanencia |
-| Cámara de maduración | kg | Espacio útil, disposición del producto y condiciones ambientales |
-| Almacenamiento de producto terminado | kg | Espacio disponible, presentación, condiciones de conservación y rotación |
+| Producto | Q-PRD-001 | Identifica la referencia comercial que se fabrica |
+| Receta | Q-REC-001 | Define materiales, cantidades, operaciones y parámetros de fabricación |
+| Versión de receta | Q-REC-001, versión 1.0 | Identifica una configuración específica de la receta |
+| Batch | 20261011-Q-001-001 | Registra una ejecución concreta de producción |
 
-La capacidad de maduración es especialmente importante para el queso Sopó. La cantidad de producto que puede fabricarse en un periodo no equivale necesariamente a la cantidad que puede mantenerse simultáneamente en maduración.
+Un producto puede tener varias recetas o versiones de receta. Por ejemplo, una modificación aprobada de cantidades, secuencia o parámetros puede generar una nueva versión, sin necesidad de crear un producto comercial diferente.
 
-Por ello, la capacidad de la cámara debe relacionarse con el inventario acumulado, el tiempo de permanencia y la programación de los lotes.
+Cada batch debe registrar la versión de receta utilizada para que los resultados de producción puedan relacionarse con las condiciones específicas de fabricación.
 
-## 8. Identificación de restricciones de capacidad
+## 3. Maestro de recetas
 
-La capacidad global de la línea no se obtiene sumando las capacidades nominales de todos los equipos. Depende de la secuencia productiva, la disponibilidad de cada recurso, los tiempos de ocupación y las restricciones de almacenamiento.
+| ID | Nombre de la receta | Producto asociado | Tipo de producto | Versión inicial | Origen/Estado |
+|---|---|---|---|---|---|
+| Q-REC-001 | Receta de Queso Campesino | Q-PRD-001 | Queso fresco | 1.0 | PROPOSED |
+| Q-REC-002 | Receta de Queso Mozzarella | Q-PRD-002 | Queso fresco de pasta hilada | 1.0 | PROPOSED |
+| Q-REC-003 | Receta de Queso Sopó | Q-PRD-003 | Queso madurado | 1.0 | PROPOSED |
 
-Para el análisis se considerarán, entre otros, los siguientes factores:
+La versión 1.0 identifica la primera estructura del modelo, no una receta industrial validada. Las cantidades y condiciones de fabricación se incorporarán cuando exista información técnica suficiente o se definan supuestos académicos explícitos.
 
-- Capacidad útil de tanques y equipos de elaboración.
-- Duración de la coagulación y otras etapas de permanencia.
-- Capacidad y disponibilidad de los sistemas de desuerado, prensado y estirado.
-- Tiempos de preparación, limpieza y cambio de producto.
-- Disponibilidad de personal y servicios industriales.
-- Capacidad de almacenamiento y maduración.
-- Programación de referencias y posibles operaciones compartidas.
+## 4. Estructura de una receta
 
-La operación o recurso que limite el flujo sostenible de producción constituirá una restricción de capacidad y deberá analizarse junto con los tiempos de espera y la utilización de los equipos.
+Cada receta deberá contener, como mínimo, los siguientes campos:
 
-## 9. Registro de datos pendientes
-
-Para completar los cálculos de capacidad se requiere recopilar o justificar los siguientes datos:
-
-| Dato requerido | Unidad | Aplicación |
+| Campo | Descripción | Unidad o formato |
 |---|---|---|
-| Masa de leche por lote | kg/lote | Dimensionamiento y balance de materiales |
-| Masa de producto terminado por lote | kg/lote | Producción y rendimiento |
-| Capacidad útil de cada equipo | L o kg | Verificación del tamaño de lote |
-| Tiempo efectivo de cada operación | min o h | Cálculo de capacidad de procesamiento |
-| Tiempo de limpieza y preparación | min | Estimación de disponibilidad |
-| Duración del turno | h/turno | Capacidad por turno |
-| Disponibilidad de equipos | % | Capacidad efectiva |
-| Tiempo de maduración | h o días | Capacidad de la cámara y programación |
-| Capacidad de almacenamiento | kg o L | Evaluación de restricciones logísticas |
+| ID de receta | Identificador único | Código |
+| Versión | Versión de la receta | Texto o número |
+| Producto asociado | Referencia comercial fabricada | Código de producto |
+| Tamaño de lote objetivo | Cantidad planificada de producción | kg/lote |
+| Materias primas | Materiales e ingredientes requeridos | IDs existentes |
+| Cantidad por material | Cantidad requerida para el lote | kg, L u otra unidad aplicable |
+| Secuencia de operaciones | Orden de ejecución del proceso | IDs de operación |
+| Parámetros de proceso | Valores objetivo y límites aplicables | Unidades de la Capa 6 |
+| Equipos requeridos | Equipos asociados a las operaciones | IDs de equipo |
+| Criterios de calidad | Condiciones de aceptación del proceso y producto | Valor, rango o criterio |
+| Condiciones de almacenamiento | Requisitos de conservación del producto | Según corresponda |
+| Estado de aprobación | Estado de revisión de la receta | Borrador, en revisión o aprobada |
+| Origen de la información | Procedencia de los datos | PUBLIC, REFERENCE, ASSUMED, CALCULATED o PROPOSED |
 
-Los datos obtenidos deberán registrarse con su unidad y origen. Los valores calculados deberán conservar la referencia a los datos utilizados, mientras que los supuestos académicos deberán identificarse explícitamente.
+Los parámetros deben distinguir entre el valor objetivo, los límites aceptables y el valor realmente medido durante la producción. El valor real se registrará en el batch correspondiente, no en el maestro de receta.
 
-## 10. Estado del modelamiento
+## 5. Materias primas por receta
 
-La estructura de indicadores y los criterios de cálculo de capacidad se encuentran definidos para las tres referencias. Los valores numéricos quedan pendientes de validación y de la recopilación de información técnica u operativa.
+Las recetas utilizarán los identificadores definidos en la Capa 2. No se crearán códigos nuevos para materiales ya registrados.
 
-La siguiente etapa del modelamiento utilizará estos indicadores para caracterizar los recursos requeridos por la línea y relacionarlos con los equipos, el personal, los materiales y los servicios industriales necesarios para la producción.
+| ID de material | Material | Campesino | Mozzarella | Sopó | Cantidad por lote |
+|---|---|---|---|---|---|
+| Q-MP-001 | Leche de vaca | Sí | Sí | Sí | PENDING |
+| Q-MP-002 | Cultivos lácticos | Según formulación | Según formulación | Según formulación | PENDING |
+| Q-MP-003 | Cuajo o coagulante | Según formulación | Según formulación | Según formulación | PENDING |
+| Q-MP-004 | Sal (NaCl) | Según formulación | Según formulación | Según formulación | PENDING |
+| Q-MP-005 | Cloruro de calcio | Por validar | Por validar | Por validar | PENDING |
+| Q-MA-001 | Empaque primario | Sí | Sí | Sí | PENDING |
+| Q-MA-002 | Etiqueta | Sí | Sí | Sí | PENDING |
+| Q-MA-003 | Empaque secundario | Según presentación | Según presentación | Según presentación | PENDING |
+
+La tabla representa los materiales que deben evaluarse al estructurar cada receta. La inclusión de un ingrediente no confirma que se utilice en todas las referencias. Su uso y cantidad deberán definirse a partir de una formulación técnica validada.
+
+Los materiales de empaque se registran como requerimientos asociados a la fabricación y presentación del producto. Sus cantidades dependerán del formato comercial, las unidades por empaque y la configuración logística.
+
+## 6. Secuencia de fabricación por referencia
+
+Las secuencias siguientes reutilizan las operaciones definidas en la Capa 4. Se presentan como rutas preliminares para organizar las recetas y deberán validarse antes de considerarse instrucciones de fabricación.
+
+### 6.1. Queso Campesino — Q-REC-001
+
+| Secuencia | ID de operación | Operación |
+|---|---|---|
+| 1 | Q-OP-001 | Recepción de leche |
+| 2 | Q-OP-002 | Control de recepción |
+| 3 | Q-OP-003 | Almacenamiento de leche |
+| 4 | Q-OP-004 | Preparación de la leche |
+| 5 | Q-OP-005 | Tratamiento térmico |
+| 6 | Q-OP-006 | Cultivo o inoculación, según formulación |
+| 7 | Q-OP-007 | Coagulación |
+| 8 | Q-OP-008 | Corte de cuajada |
+| 9 | Q-OP-009 | Agitación o tratamiento de cuajada |
+| 10 | Q-OP-010 | Desuerado |
+| 11 | Q-OP-011 | Tratamiento específico de cuajada |
+| 12 | Q-OP-012 | Salado, según formulación |
+| 13 | Q-OP-013 | Moldeado |
+| 14 | Q-OP-014 | Prensado, según formulación |
+| 15 | Q-OP-017 | Enfriamiento o acondicionamiento |
+| 16 | Q-OP-018 | Empaque |
+| 17 | Q-OP-019 | Almacenamiento de producto terminado |
+| 18 | Q-OP-020 | Despacho |
+
+La ruta representa una estructura preliminar para un queso fresco. La necesidad, posición y duración de determinadas operaciones deberán confirmarse mediante una referencia técnica apropiada.
+
+### 6.2. Queso Mozzarella — Q-REC-002
+
+| Secuencia | ID de operación | Operación |
+|---|---|---|
+| 1 | Q-OP-001 | Recepción de leche |
+| 2 | Q-OP-002 | Control de recepción |
+| 3 | Q-OP-003 | Almacenamiento de leche |
+| 4 | Q-OP-004 | Preparación de la leche |
+| 5 | Q-OP-005 | Tratamiento térmico |
+| 6 | Q-OP-006 | Cultivo o inoculación, según formulación |
+| 7 | Q-OP-007 | Coagulación |
+| 8 | Q-OP-008 | Corte de cuajada |
+| 9 | Q-OP-009 | Agitación o tratamiento de cuajada |
+| 10 | Q-OP-010 | Desuerado |
+| 11 | Q-OP-011 | Tratamiento específico de cuajada |
+| 12 | Q-OP-015 | Estirado o hilado |
+| 13 | Q-OP-013 | Moldeado |
+| 14 | Q-OP-017 | Enfriamiento o acondicionamiento |
+| 15 | Q-OP-018 | Empaque |
+| 16 | Q-OP-019 | Almacenamiento de producto terminado |
+| 17 | Q-OP-020 | Despacho |
+
+El estirado o hilado constituye una operación diferenciadora de la ruta de Mozzarella. Sus condiciones dependen de las características de la cuajada y de la formulación. No se asignan temperaturas, tiempos ni condiciones de acidez sin una fuente técnica que los respalde.
+
+### 6.3. Queso Sopó — Q-REC-003
+
+| Secuencia | ID de operación | Operación |
+|---|---|---|
+| 1 | Q-OP-001 | Recepción de leche |
+| 2 | Q-OP-002 | Control de recepción |
+| 3 | Q-OP-003 | Almacenamiento de leche |
+| 4 | Q-OP-004 | Preparación de la leche |
+| 5 | Q-OP-005 | Tratamiento térmico |
+| 6 | Q-OP-006 | Cultivo o inoculación, según formulación |
+| 7 | Q-OP-007 | Coagulación |
+| 8 | Q-OP-008 | Corte de cuajada |
+| 9 | Q-OP-009 | Agitación o tratamiento de cuajada |
+| 10 | Q-OP-010 | Desuerado |
+| 11 | Q-OP-011 | Tratamiento específico de cuajada |
+| 12 | Q-OP-013 | Moldeado |
+| 13 | Q-OP-014 | Prensado, según formulación |
+| 14 | Q-OP-012 | Salado, según formulación |
+| 15 | Q-OP-016 | Maduración |
+| 16 | Q-OP-017 | Enfriamiento o acondicionamiento, según el proceso |
+| 17 | Q-OP-018 | Empaque |
+| 18 | Q-OP-019 | Almacenamiento de producto terminado |
+| 19 | Q-OP-020 | Despacho |
+
+La maduración se incluye como etapa diferenciadora del modelo de Queso Sopó. La secuencia exacta, las condiciones ambientales y la duración deberán validarse con información técnica específica del producto.
+
+## 7. Parámetros de proceso de la receta
+
+Los parámetros se relacionan con las variables identificadas en la Capa 6.
+
+| ID de variable | Variable | Unidad | Valor objetivo | Límites aceptables | Estado |
+|---|---|---|---|---|---|
+| Q-VAR-001 | Temperatura de la leche | °C | PENDING | PENDING | PENDING |
+| Q-VAR-002 | Tiempo de tratamiento térmico | min | PENDING | PENDING | PENDING |
+| Q-VAR-003 | Temperatura de inoculación | °C | PENDING | PENDING | PENDING |
+| Q-VAR-004 | pH de leche o mezcla | Sin unidad | PENDING | PENDING | PENDING |
+| Q-VAR-005 | Tiempo de coagulación | min | PENDING | PENDING | PENDING |
+| Q-VAR-006 | Temperatura de coagulación | °C | PENDING | PENDING | PENDING |
+| Q-VAR-007 | Tamaño de corte de cuajada | mm | PENDING | PENDING | PENDING |
+| Q-VAR-008 | Velocidad de agitación | rpm | PENDING | PENDING | PENDING |
+| Q-VAR-009 | Tiempo de agitación | min | PENDING | PENDING | PENDING |
+| Q-VAR-010 | Temperatura de tratamiento de cuajada | °C | PENDING | PENDING | PENDING |
+| Q-VAR-013 | Cantidad de sal | kg | PENDING | PENDING | PENDING |
+| Q-VAR-014 | Presión de prensado | bar | PENDING | PENDING | PENDING |
+| Q-VAR-015 | Tiempo de prensado | min | PENDING | PENDING | PENDING |
+| Q-VAR-016 | Temperatura de estirado o hilado | °C | PENDING | PENDING | PENDING |
+| Q-VAR-017 | Temperatura de maduración | °C | PENDING | PENDING | PENDING |
+| Q-VAR-018 | Humedad relativa de maduración | % RH | PENDING | PENDING | PENDING |
+| Q-VAR-019 | Tiempo de maduración | h o días | PENDING | PENDING | PENDING |
+| Q-VAR-020 | Temperatura antes del empaque | °C | PENDING | PENDING | PENDING |
+
+No todas las variables aplican a todas las referencias. Por ejemplo, las variables de estirado se asocian principalmente a la ruta de Mozzarella, mientras que las de maduración corresponden a la ruta de Queso Sopó.
+
+Los valores de referencia y los límites aceptables deben establecerse a partir de fuentes técnicas adecuadas o de supuestos académicos claramente identificados. No deben interpretarse los campos PENDING como valores cero.
+
+## 8. Control de versiones
+
+Cada modificación de una receta debe quedar identificada y documentada.
+
+| Campo | Descripción |
+|---|---|
+| ID de receta | Código permanente de la receta |
+| Versión | Identificador de la versión |
+| Fecha de modificación | Fecha del cambio |
+| Descripción del cambio | Parámetros, materiales u operaciones modificados |
+| Justificación | Motivo técnico u operativo |
+| Responsable de revisión | Persona o rol que revisa |
+| Estado de aprobación | Borrador, en revisión o aprobada |
+| Referencia de soporte | Fuente técnica, ensayo o decisión de modelamiento |
+
+Una versión aprobada debe mantenerse identificable aunque posteriormente se cree otra. Los batches históricos deben conservar la versión de receta utilizada durante su ejecución, sin actualizarse automáticamente cuando cambie el maestro.
+
+ # Capa 12 — Batches y trazabilidad
+
+## 1. Objetivo
+
+Definir la estructura de identificación, registro y seguimiento de los batches de producción de la línea de quesos de referencia, considerando las referencias Queso Campesino, Queso Mozzarella y Queso Sopó.
+
+Esta capa integra la información de materias primas, recetas, operaciones, equipos, variables, tiempos, capacidades y recursos para mantener la trazabilidad de cada ejecución productiva.
+
+El modelo permitirá relacionar las condiciones planificadas con los resultados reales de fabricación, facilitar el seguimiento de los lotes, documentar desviaciones y proporcionar datos para el análisis del desempeño productivo.
+
+La estructura propuesta corresponde a un modelo académico de trazabilidad. No representa una descripción de los sistemas informáticos instalados actualmente en la planta de referencia.
+
+## 2. Conceptos fundamentales
+
+| Concepto | Descripción | Identificador relacionado |
+|---|---|---|
+| Producto | Referencia comercial que se fabrica | Q-PRD-XXX |
+| Receta | Definición de materiales, operaciones y parámetros de fabricación | Q-REC-XXX |
+| Versión de receta | Configuración específica de una receta | ID de receta + versión |
+| Batch | Ejecución concreta de producción | ID único de batch |
+| Lote de materia prima | Identificador del lote recibido de un proveedor o proceso anterior | ID de lote de origen |
+| Lote de producto terminado | Identificador utilizado para identificar y rastrear el producto fabricado | ID de batch o código derivado |
+| Registro de proceso | Datos medidos y eventos registrados durante la ejecución | ID de batch + registro |
+| Registro de calidad | Resultados de las verificaciones realizadas sobre el lote | ID de batch + registro |
+
+Un producto puede fabricarse mediante diferentes versiones de receta y generar múltiples batches. Cada batch debe conservar la referencia exacta de la receta utilizada y los registros correspondientes a su ejecución.
+
+La trazabilidad también debe permitir relacionar los lotes de materias primas con los batches en los que fueron utilizados y con el producto terminado obtenido.
+
+## 3. Identificación de batches
+
+Se propone utilizar el siguiente formato:
+
+`AAAAMMDD-Q-NNN-XXX`
+
+Donde:
+
+- `AAAAMMDD`: fecha de inicio de la producción.
+- `Q`: identificador de la línea de quesos.
+- `NNN`: consecutivo de producción del día.
+- `XXX`: consecutivo adicional para distinguir ejecuciones cuando sea necesario.
+
+Ejemplo:
+
+`20261011-Q-001-001`
+
+Este código representa un batch de la línea de quesos iniciado el 11 de octubre de 2026. Es un ejemplo de nomenclatura, no un registro de una fabricación real.
+
+La numeración debe administrarse de manera que cada identificador sea único y no se reutilice. Si la producción atraviesa la medianoche, la fecha de referencia deberá seguir una regla operativa definida, como la fecha de inicio del batch.
+
+En una implementación real, el identificador debe generarse y validarse mediante un mecanismo centralizado para evitar duplicidades entre turnos, equipos o sistemas.
+
+## 4. Maestro de batches
+
+La siguiente tabla representa la estructura principal de registro de las ejecuciones productivas.
+
+| Campo | Descripción | Unidad o formato | Estado inicial |
+|---|---|---|---|
+| ID de batch | Identificador único de la ejecución | Código | PENDING |
+| Producto | Referencia fabricada | Q-PRD-XXX | PENDING |
+| Receta | Receta utilizada | Q-REC-XXX | PENDING |
+| Versión de receta | Versión aplicada | Texto o número | PENDING |
+| Fecha de inicio | Inicio de fabricación | Fecha y hora | PENDING |
+| Fecha de finalización | Finalización de fabricación | Fecha y hora | PENDING |
+| Turno | Turno de producción | Código o texto | PENDING |
+| Cantidad planificada | Cantidad prevista para fabricar | kg/lote | PENDING |
+| Cantidad real procesada | Cantidad efectivamente procesada | kg/lote | PENDING |
+| Cantidad de producto terminado | Producto obtenido | kg/lote | PENDING |
+| Estado del batch | Situación de la ejecución | Estado controlado | PENDING |
+| Responsable | Rol o identificador autorizado | Código | PENDING |
+| Registro de calidad | Referencia a resultados de inspección | ID de registro | PENDING |
+| Observaciones | Desviaciones o eventos relevantes | Texto | PENDING |
+
+Los campos PENDING indican que aún no se dispone de datos reales. No representan valores iguales a cero ni confirman que el batch haya sido ejecutado.
+
+## 5. Relación entre batches, productos y recetas
+
+Cada batch debe estar vinculado con un producto y una versión específica de receta.
+
+| ID de producto | Producto | ID de receta | Versión de receta | ID de batch de ejemplo |
+|---|---|---|---|---|
+| Q-PRD-001 | Queso Campesino | Q-REC-001 | 1.0 | 20261011-Q-001-001 |
+| Q-PRD-002 | Queso Mozzarella | Q-REC-002 | 1.0 | 20261011-Q-002-001 |
+| Q-PRD-003 | Queso Sopó | Q-REC-003 | 1.0 | 20261011-Q-003-001 |
+
+Los identificadores de batch de la tabla son ejemplos de formato. No representan ejecuciones reales ni confirman que las recetas estén aprobadas.
+
+La relación entre producto, receta y batch permite diferenciar la definición del proceso de cada ejecución particular. Esto es fundamental para comparar resultados entre lotes y reconstruir las condiciones de fabricación.
+
+## 6. Trazabilidad de materias primas
+
+Para rastrear el origen de los materiales utilizados, cada batch debe relacionarse con los lotes de materias primas consumidos durante su ejecución.
+
+| ID de batch | ID de material | Lote de materia prima | Cantidad consumida | Unidad | Origen/Estado |
+|---|---|---|---|---|---|
+| PENDING | Q-MP-001 | PENDING | PENDING | kg o L | PENDING |
+| PENDING | Q-MP-002 | PENDING | PENDING | kg o L | PENDING |
+| PENDING | Q-MP-003 | PENDING | PENDING | kg o L | PENDING |
+| PENDING | Q-MP-004 | PENDING | PENDING | kg | PENDING |
+| PENDING | Q-MP-005 | PENDING | PENDING | kg o L | PENDING |
+
+No todos los materiales tienen que utilizarse en todas las referencias. El registro definitivo deberá incluir únicamente los materiales realmente consumidos en cada batch, de acuerdo con la receta aplicable.
+
+La trazabilidad debe conservar la relación entre el lote recibido, el material consumido, el batch de fabricación y el producto terminado. Si un lote de materia prima se utiliza en varios batches, todos ellos deben quedar asociados con ese lote de origen.
+
+## 7. Registro de operaciones y variables de proceso
+
+Los datos de ejecución deben asociarse con las operaciones y variables identificadas en las capas anteriores.
+
+### 7.1. Registro de operaciones
+
+| ID de batch | ID de operación | Inicio real | Fin real | Equipo utilizado | Estado |
+|---|---|---|---|---|---|
+| PENDING | Q-OP-001 | PENDING | PENDING | Q-EQ-001 | PENDING |
+| PENDING | Q-OP-005 | PENDING | PENDING | Q-EQ-004 | PENDING |
+| PENDING | Q-OP-007 | PENDING | PENDING | Q-EQ-005 | PENDING |
+| PENDING | Q-OP-010 | PENDING | PENDING | Q-EQ-008 | PENDING |
+| PENDING | Q-OP-018 | PENDING | PENDING | Q-EQ-016 | PENDING |
+
+La tabla ilustra la estructura de registro. El conjunto definitivo de operaciones y equipos dependerá de la ruta de fabricación y de los equipos efectivamente utilizados.
+
+### 7.2. Registro de variables
+
+| ID de batch | ID de variable | Valor objetivo | Valor medido | Unidad | Fecha y hora |
+|---|---|---|---|---|---|
+| PENDING | Q-VAR-001 | PENDING | PENDING | °C | PENDING |
+| PENDING | Q-VAR-002 | PENDING | PENDING | min | PENDING |
+| PENDING | Q-VAR-004 | PENDING | PENDING | Sin unidad | PENDING |
+| PENDING | Q-VAR-006 | PENDING | PENDING | °C | PENDING |
+| PENDING | Q-VAR-021 | PENDING | PENDING | kg | PENDING |
+
+El registro definitivo debe incorporar las variables aplicables a cada referencia. Cuando una variable se mida varias veces durante una operación, cada medición deberá almacenarse como un registro independiente o como una serie temporal asociada al batch.
+
+Los valores objetivo proceden de la versión de receta utilizada. Los valores medidos proceden de la ejecución real del proceso.
+
+## 8. Registro de tiempos y cantidades
+
+El batch permite calcular indicadores de desempeño a partir de los datos reales de producción.
+
+| Indicador | Cálculo o criterio | Unidad |
+|---|---|---|
+| Tiempo total del batch | Diferencia entre la finalización y el inicio | min o h |
+| Tiempo de procesamiento | Suma de los tiempos efectivos de operación, según la regla de cálculo | min o h |
+| Cantidad procesada | Masa real de material procesado | kg/lote |
+| Cantidad de producto terminado | Masa obtenida al finalizar la fabricación | kg/lote |
+| Pérdida de proceso | Diferencia entre las entradas y salidas contabilizadas, según el balance de masa | kg |
+| Rendimiento másico | Producto terminado dividido entre la masa de leche procesada | kg/kg |
+| Cumplimiento de producción | Comparación entre cantidad real y cantidad planificada | % |
+
+Para evitar errores de interpretación, el tiempo total transcurrido no debe confundirse con la suma de los tiempos de operación. Las esperas, transferencias, limpiezas y operaciones simultáneas deben tratarse de acuerdo con la definición de cada indicador.
+
+El cálculo de pérdidas requiere considerar las demás salidas del proceso, como el suero y los residuos, además de cualquier diferencia de inventario o medición. Por ello, la diferencia entre la leche procesada y el queso obtenido no debe interpretarse automáticamente como una pérdida.
+
+## 9. Calidad y estado final del batch
+
+Cada batch debe asociarse con los resultados de calidad y con la decisión tomada sobre el producto fabricado.
+
+| Campo | Descripción | Unidad o formato |
+|---|---|---|
+| ID de batch | Identificador de la ejecución | Código |
+| ID de registro de calidad | Identificador del registro de inspección | Código |
+| Fecha de inspección | Momento de la verificación | Fecha y hora |
+| Variable o criterio evaluado | Propiedad o requisito verificado | Texto o ID de variable |
+| Resultado obtenido | Valor medido o resultado de inspección | Según criterio |
+| Criterio de aceptación | Requisito aplicable | Valor, rango o condición |
+| Resultado de evaluación | Cumple, no cumple o requiere revisión | Estado |
+| Disposición del lote | Liberado, retenido, rechazado u otra decisión autorizada | Estado |
+| Responsable autorizado | Persona o rol que registra o aprueba | Código |
+
+Los criterios concretos de aceptación deberán establecerse a partir de los requisitos de calidad e inocuidad aplicables. No se asignan límites numéricos sin soporte técnico.
+
+El estado final del batch debe diferenciar la finalización física de la fabricación de la autorización para liberar el producto. Un batch puede haber terminado su procesamiento y continuar retenido mientras se verifican los resultados de calidad.
+
+## 10. Estados del batch
+
+Se propone el siguiente conjunto inicial de estados:
+
+| Estado | Descripción |
+|---|---|
+| PLANIFICADO | Batch programado, aún sin iniciar |
+| EN_PROCESO | Fabricación iniciada |
+| EN_ESPERA | Ejecución detenida temporalmente o pendiente de una condición |
+| COMPLETADO | Operaciones de fabricación finalizadas |
+| EN_REVISION | Pendiente de verificación de datos o calidad |
+| LIBERADO | Producto autorizado para continuar a distribución |
+| RETENIDO | Producto bloqueado temporalmente para evaluación |
+| RECHAZADO | Producto no aceptado según los criterios aplicables |
+| CANCELADO | Batch cancelado antes de completar su ejecución |
+
+La transición entre estados debe seguir reglas definidas. Por ejemplo, completar las operaciones no implica que el producto quede automáticamente liberado.
+
+Los estados deberán implementarse de acuerdo con las necesidades reales del modelo y con las responsabilidades de los usuarios autorizados.
+
+## 11. Flujo conceptual de trazabilidad
+
+```mermaid
+flowchart TD
+    A["Recepción de materias primas"] --> B["Identificación de lotes de origen"]
+    B --> C["Selección de producto y receta"]
+    C --> D["Creación del batch"]
+    D --> E["Ejecución de operaciones"]
+    E --> F["Registro de equipos, tiempos y variables"]
+    F --> G["Registro de cantidades y consumos"]
+    G --> H["Verificación de calidad"]
+    H --> I{"¿Cumple los criterios?"}
+    I -->|Sí| J["Liberación del producto"]
+    I -->|No| K["Retención y evaluación"]
+    J --> L["Almacenamiento y despacho"]
+    K --> M["Registro de decisión y disposición"]
+    L --> N["Trazabilidad del producto terminado"]
+    M --> N
+```
+
+El flujo representa la lógica general del modelo. Las decisiones, aprobaciones y transiciones concretas deberán ajustarse a los procedimientos definidos para la operación.
+
+## 12. Relación con las demás capas
+
+| Capa | Información que aporta a la trazabilidad |
+|---|---|
+| Capa 1 — Contexto | Identificación de la línea y referencias comerciales |
+| Capa 2 — Materias primas | Materiales, identificadores y cantidades |
+| Capa 3 — Flujo general | Ruta global del producto |
+| Capa 4 — Proceso detallado | Operaciones ejecutadas |
+| Capa 5 — Equipos | Equipos utilizados |
+| Capa 6 — Variables | Parámetros medidos y controlados |
+| Capa 7 — Sensores y actuadores | Instrumentación y elementos de actuación |
+| Capa 8 — Tiempos | Tiempos planificados y reales |
+| Capa 9 — Capacidades | Cantidades procesadas y desempeño productivo |
+| Capa 10 — Recursos | Personal, servicios e infraestructura |
+| Capa 11 — Recetas | Materiales, secuencia y parámetros objetivo |
+
+La Capa 12 integra estas fuentes mediante el identificador del batch y las relaciones con sus respectivos registros. Los datos se deben conservar de manera que sea posible reconstruir la ejecución sin sobrescribir el historial de fabricación.
+
+ 
+
+## 13. Estado de la capa
+
+Se definieron la estructura de identificación de batches, los campos principales de registro, la trazabilidad de materias primas, el seguimiento de operaciones y variables, los indicadores de ejecución, los registros de calidad y los estados del lote.
+
+La estructura completa de las doce capas de la línea de quesos queda establecida a nivel de modelamiento conceptual. Los registros reales, los valores numéricos, las reglas operativas definitivas y las integraciones tecnológicas permanecen pendientes de validación e implementación.
+
+El siguiente paso metodológico es revisar la coherencia entre las doce capas y posteriormente integrar la línea de quesos con las líneas de yogurt y UHT, identificando los recursos compartidos y las restricciones que afectan a la planta en conjunto.
