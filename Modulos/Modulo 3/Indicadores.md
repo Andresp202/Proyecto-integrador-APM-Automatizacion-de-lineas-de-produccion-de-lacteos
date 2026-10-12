@@ -10,7 +10,6 @@ Plantilla en Excel para calcular demanda, lotes, Takt, OEE, capacidad, utilizaci
 
 ```mermaid
 flowchart LR
-    L[Léeme] -.-> A
     A[Entradas<br/>celdas editables] --> B[Cálculos<br/>fórmulas]
     B --> C[Indicadores<br/>resumen]
 ```
