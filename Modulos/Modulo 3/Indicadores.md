@@ -1,6 +1,6 @@
 # Modelo de cálculo — Línea de quesos
 
-Plantilla en Excel para calcular demanda, lotes, Takt, OEE, capacidad, utilización, rendimiento y MLT de una línea de producción de quesos (Campesino, Mozzarella y Sopó), con las definiciones del curso (Cortés y García) y los IDs del archivo `Linea_de_quesos.md` (Q-CAP, Q-TMP, Q-RES).
+Este documento resume los datos y cálculos utilizados para evaluar el desempeño de una línea de producción de queso **Campesino, Mozzarella y Sopó**. El objetivo es estimar si la línea propuesta tiene capacidad suficiente para atender la demanda y, al mismo tiempo, calcular indicadores vistos en la asignatura como **OEE, Takt Time, capacidad, utilización, rendimiento, productividad y Manufacturing Lead Time (MLT)**.
 
 > **Todos los valores son ilustrativos (ASSUMED).** No son datos de una planta real ni del equipo. Sirven para que el modelo calcule y se reemplazan cuando existan valores reales. Los valores están calibrados para una **planta colombiana pequeña/mediana con OEE ≈ 65 %**.
 
