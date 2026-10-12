@@ -17,7 +17,6 @@ flowchart LR
 
 | Hoja | Contenido |
 |---|---|
-| **Léeme** | Descripción, convenciones, supuestos y referencias. |
 | **Entradas** | Parámetros editables (azul sobre amarillo) con columna *Origen* (`PUBLIC`, `REFERENCE`, `ASSUMED`, `CALCULATED`, `PROPOSED`, `PENDING`) y nota. |
 | **Cálculos** | Lotes, balance de masa, tiempo disponible y OEE, Takt, capacidad, utilización, MLT y WIP. Todo son fórmulas. |
 | **Indicadores** | Resumen con el nivel de OEE según la tabla de Cortés. |
